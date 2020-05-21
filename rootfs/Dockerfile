@@ -12,7 +12,8 @@ RUN sed -i -e 's/^deb-src/#deb-src/' /etc/apt/sources.list && \
         ca-certificates \
         curl \
         net-tools \
-        procps && \
+        procps \
+        gnupg && \
     # cleanup
     apt-get autoremove -y && \
     apt-get clean -y && \

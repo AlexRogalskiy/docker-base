@@ -11,6 +11,7 @@ RUN sed -i -e 's/^deb-src/#deb-src/' /etc/apt/sources.list && \
         bash \
         ca-certificates \
         curl \
+        git \
         net-tools \
         procps \
         gnupg && \

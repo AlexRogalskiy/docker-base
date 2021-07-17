@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 ARCH="$(uname)"
-ORG="deis"
+ORG="teamhephy"
 REPOS=${REPOS:-builder controller clusterator docker-go-dev dockerbuilder e2e-runner fluentd logbomb logger minio monitor nsq postgres redis steward steward-cf registry-token-refresher router workflow-manager workflow-migration}
 
-OLD_VERSION=${OLD_VERSION:-v0.3.7}
-NEW_VERSION=${NEW_VERSION:-v0.3.8}
+OLD_VERSION=${OLD_VERSION:-v0.4.1}
+NEW_VERSION=${NEW_VERSION:-v0.5.0}
 
 for repo in $REPOS; do
     echo "cloning $USER/$repo to /tmp/$repo..."
@@ -17,8 +17,8 @@ for repo in $REPOS; do
         # now target the user's fork so we're not writing to the upstream org
         git remote set-url origin "git@github.com:$USER/$repo"
         git checkout -b "$branch_name"
-        find . -type f | xargs sed -i "s,FROM quay.io/deis/base:$OLD_VERSION,FROM quay.io/deis/base:$NEW_VERSION,g"
-        git commit -am "chore(Dockerfile): update deis/base to $NEW_VERSION"
+        find . -type f | xargs sed -i "s,FROM hephy/base:$OLD_VERSION,FROM hephy/base:$NEW_VERSION,g"
+        git commit -am "chore(Dockerfile): update hephy/base to $NEW_VERSION"
         git push origin "$branch_name"
         if [[ "$ARCH" == "Linux" ]]; then
             xdg-open "$url"
